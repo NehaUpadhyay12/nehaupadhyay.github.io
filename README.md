@@ -1,1 +1,1 @@
-# Repo for Blog
+# Repository for Blog
