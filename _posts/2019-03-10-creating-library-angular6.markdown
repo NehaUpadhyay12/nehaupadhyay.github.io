@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Creating and sharing a library in Angular 6"
-categories: angular6
+categories: Angular6
 image:  /preview.jpg
 ---
 
@@ -15,9 +15,9 @@ So let's write some code!
 <h2><strong>Getting started</strong></h2>
 Before starting with the creation of library and applications, make sure you have Angular 6+ installed.
 
-One of the other new features of Angular 6 is the ability to create multiple applications in a workspace or we can call it a single source structure.
+One of the other new features of Angular 6 is the ability to create multiple applications in a workspace or a single source structure.
 
-This type of structure is particularly useful when we intend to create a dashboard/portal type of project having multiple pages which do not rely on each other but can have some common features which can be built into a library and shared among them.
+This type of structure is particularly useful when we intend to create a dashboard/portal type of project having multiple pages which do not rely on each other but can have some common features. These common features can be built into a library and shared among these pages.
 For this simple walkthrough, we'll create an Employee dashboard having the following projects:
 
 1. Timesheet application
@@ -30,7 +30,7 @@ Open any preferred command line(I am using Visual Studio Code terminal), browse 
 ng new employee-portal
 {% endhighlight %}
 
-You will see something like below when you hit enter:
+We will see something like below when we hit enter:
 
 <img src="/images/post1-creating-library-angular/screenshot-1.png">
 
@@ -79,7 +79,7 @@ Each project has quite a bit of configurations. Please note that each project ha
 
 <h2><strong>Running Applications</strong></h2>
 
-To run our "timesheet" application we will use our good old "ng serve"
+To run our "timesheet" application we will use our good old "ng serve" along with the project name that we want to run.
 
 {% highlight ruby %}
 ng serve timesheet
@@ -87,18 +87,18 @@ ng serve timesheet
 
 <img src="/images/post1-creating-library-angular/screenshot-9.png">
 
-Post successful build, open your browser on http://localhost:4200/
-You will see a simple page displaying the project heading.
+Post successful build, open any preferred browser on http://localhost:4200/.
+We will see a simple page displaying the project heading.
 
 <img src="/images/post1-creating-library-angular/screenshot-10.png" class="fit image">
 
-To see how workitems look, run the below command. I have not used a separate port for "workitems". But you can go ahead and use a different port in order to see the two applications in the browser.
+To see how workitems look, run below command. I have not used a separate port for "workitems". But you can go ahead and use a different port in order to see the two applications in the browser.
 
 {% highlight ruby %}
 ng serve workitems
 {% endhighlight %}
 
-To use a particular port you can run:
+To use a particular port we can run:
 
 {% highlight ruby %}
 ng serve workitems — port 4202
@@ -110,7 +110,7 @@ ng serve workitems — port 4202
 
 <h2><strong>Create Shareable Library</strong></h2>
 
-To create a library use the schematic "library". Here "g" is the short form for "generate" and "-p emp" specifies to use "emp" as the selector prefix.
+To create a library we use the schematic "library". Here "g" is the short form for "generate" and "-p emp" tells the Angular CLI to use "emp" as the selector prefix.
 
 {% highlight ruby %}
 ng g library emp-shared -p emp
@@ -120,19 +120,19 @@ Post the success of above command, a folder for emp-shared gets created in the "
 
 <img src="/images/post1-creating-library-angular/screenshot-12.png">
 
-The CLI has added a ‘paths’ section to tsconfig.json in the root of employee-portal.
+The CLI has added a "paths" section to tsconfig.json in the root of employee-portal.
 
 <img src="/images/post1-creating-library-angular/screenshot-13.png">
 
 This change to tsconfig.json will allow our other projects to access our library at development time.
 A section for "emp-shared" project gets added to "angular.json" similar to "workitems" and "timesheet".
-Notice the "projectType" is "library".
+Notice the "projectType" is "library" for our library project.
 
 <img src="/images/post1-creating-library-angular/screenshot-14.png">
 
 <h2><strong>Create Component and Service in the Library</strong></h2>
 
-We will create a component and a service in the library. The service will be responsible to get the details of the currently logged in user in the portal. The component will display this information on a page with the help of html selector. The selector can then be consumed by "workitems" and "timesheet" projects as this information is something which is common for both the applications.
+We will create a component and a service in the library. The service will be responsible for getting the details of the currently logged-in user in the portal. The component will display this information on a page with the help of html selector. The selector can then be consumed by "workitems" and "timesheet" projects as this information is something which is common for both the applications.
 
 In order to create a component inside the library, either we have to change the directory from the root to "emp-shared" or we can use the below command by specifying the project name while running the command in the root folder.
 
@@ -146,7 +146,7 @@ The CLI will create the component inside "emp-shared" as shown below:
 
 <img src="/images/post1-creating-library-angular/screenshot-17.png">
 
-The <strong>emp-shared.module.ts</strong> looks like below at the moment:
+The "emp-shared.module.ts" looks like below at the moment:
 
 {% highlight ts %}
 import { NgModule } from '@angular/core';
@@ -194,7 +194,7 @@ export class UserDetailsService {
 
 In "current-user" component, we call the service's "getLoggedInUser" method and assign the returned values to the class variables. We then call this method in ngOnInit(). This will ensure then whenever we use this component's selector in any other application we will automatically trigger this method and the values will be available to us.
 
-Note the selector for the component is "emp-current-user". While creating the library we specified the CLI to use "emp" as prefix for selectors.
+Note the selector for the component is "emp-current-user". While creating the library we used "emp" as the prefix for selectors.
 
 {% highlight ts %}
 import { Component, OnInit } from '@angular/core';
@@ -255,7 +255,7 @@ export class EmpSharedModule { }
 {% endhighlight %}
 
 In the public_api.ts we need to export all the components that we want to consume in other applications.
-For this add below code in the file.
+For this add below line of code in the file.
 
 {% highlight ts %}
 export * from './lib/current-user/current-user.component';
@@ -263,7 +263,7 @@ export * from './lib/current-user/current-user.component';
 
 <h2><strong>Building the library</strong></h2>
 
-To build the library browse to the root of the angular project which is "employee-portal" in our case if you are not already there.
+To build the library, browse to the root of the angular project which is "employee-portal" in our case, if you are not already there.
 
 Run below command.
 
@@ -313,7 +313,7 @@ In app.component.html for both the applications add the below selector.
 <emp-current-user></emp-current-user>
 {% endhighlight %}
 
-Now we are ready to see the data returned from the shareable library to our consumer applications.
+Now we are ready to see the data returned from our library to our consumer applications.
 
 {% highlight ruby %}
 ng serve timesheet
@@ -336,13 +336,13 @@ With this we have completed the development of a basic shareable library in Angu
 There are some important points I would like to highlight which are likely to be missed by us.
 
 1. Rebuild the library after every change.
-2. Add the exports in public_api.ts file for all the feature you want to export. This can include components, services, model classes, directives etc.
+2. Add the exports in public_api.ts file for all the features we want to export. This can include components, services, model classes, directives etc.
 3. If you download the code from github, you cannot directly run npm install as the package.json contains the line to install "emp-shared" from dist folder but that won't be available post the download. To resolve this, follow below mentioned steps in the order they are specified.
   - Remove reference of "emp-shared" from package.json.
   - Delete package-lock.json file.
   - Run npm install
-  - ng build emp-shared
-  - npm install dist/shared
+  - Run ng build emp-shared
+  - Run npm install dist/shared
 
 
-<b>Finally</b>, I would appreciate your comments, feedback and suggestions on the post. That would help me improvise my future posts.
+<b>Finally</b>, I would appreciate your comments, feedback and suggestions on the post.
