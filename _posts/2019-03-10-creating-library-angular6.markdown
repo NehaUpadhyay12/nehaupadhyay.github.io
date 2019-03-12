@@ -344,6 +344,6 @@ There are some important points I would like to highlight which are likely to be
   - Run ng build emp-shared
   - Run npm install dist/shared
 
-Complete and working code for these applications can be downloaded from <a href="https://github.com/NehaUpadhyay12/nehaupadhyay12.github.io" target="_blank">github</a>.
+Complete and working code for these applications can be downloaded from <a href="https://github.com/NehaUpadhyay12/creating-and-sharing-library-angular6" target="_blank">github</a>.
 
 <b>Finally</b>, I would appreciate your comments, feedback and suggestions on the post.
